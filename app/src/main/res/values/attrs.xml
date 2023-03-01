@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ItemRowView">
+        <attr name="itemColor" format="string" />
+        <attr name="itemTitle" format="string" />
+    </declare-styleable>
+</resources>
