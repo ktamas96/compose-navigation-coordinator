@@ -12,8 +12,8 @@ class TransferViewModel @AssistedInject constructor(
     @Assisted private val transferScreenListener: TransferScreenListener,
 ) : ViewModel() {
 
-    fun navigateToContact() {
-        transferScreenListener.onContactRequested()
+    fun navigateToCard() {
+        transferScreenListener.onCardRequested()
     }
 
     @AssistedFactory

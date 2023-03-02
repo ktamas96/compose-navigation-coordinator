@@ -31,7 +31,7 @@ fun TransferScreen(
         )
         Button(
             modifier = Modifier.padding(top = MaterialTheme.spacing.small),
-            onClick = transferViewModel::navigateToContact
+            onClick = transferViewModel::navigateToCard
         ) {
             Text(text = "To card")
         }

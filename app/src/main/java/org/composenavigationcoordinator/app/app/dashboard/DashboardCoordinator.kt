@@ -8,6 +8,7 @@ import org.composenavigationcoordinator.app.coordinator
 import org.composenavigationcoordinator.app.daggerViewModel
 import org.composenavigationcoordinator.app.app.card.cardCoordinator
 import org.composenavigationcoordinator.app.app.dashboard.contact.ContactScreen
+import org.composenavigationcoordinator.app.app.dashboard.contact.ContactViewModel
 import org.composenavigationcoordinator.app.app.dashboard.di.DashboardComponent
 import org.composenavigationcoordinator.app.app.dashboard.di.DashboardComponentFactory
 import org.composenavigationcoordinator.app.app.dashboard.transfer.TransferScreen
@@ -16,7 +17,7 @@ class DashboardCoordinator(
     component: DashboardComponent,
 ) : BaseCoordinator<DashboardComponent>(component), TransferScreenListener {
 
-    override fun onContactRequested() {
+    override fun onCardRequested() {
         navController.navigate("card")
     }
 
@@ -27,7 +28,7 @@ class DashboardCoordinator(
 
 interface TransferScreenListener {
 
-    fun onContactRequested()
+    fun onCardRequested()
 }
 
 fun NavGraphBuilder.dashboardCoordinator(
@@ -48,10 +49,10 @@ fun NavGraphBuilder.dashboardCoordinator(
             TransferScreen(transferViewModel)
         }
         composable("contact") {
-            ContactScreen(
-                dashboardData = dashboardCoordinator.component.dashboardData,
-                mainData = dashboardCoordinator.component.mainData
-            )
+            val contactViewModel = daggerViewModel {
+                ContactViewModel(nonDIDependency = "Non DI dependency")
+            }
+            ContactScreen(contactViewModel)
         }
         cardCoordinator(
             dashboardCoordinator.component,

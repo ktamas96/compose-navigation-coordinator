@@ -15,9 +15,7 @@ import org.composenavigationcoordinator.app.app.dashboard.DashboardData
 
 @Composable
 fun ContactScreen(
-    dashboardData: DashboardData,
-    mainData: MainData,
-    contactViewModel: ContactViewModel = viewModel(),
+    contactViewModel: ContactViewModel,
 ) {
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -25,7 +23,7 @@ fun ContactScreen(
         verticalArrangement = Arrangement.Center
     ) {
         Text(
-            text = "Contact main: ${mainData.data} dashboard: ${dashboardData.dashboardData}",
+            text = "Contact main ${contactViewModel.nonDIDependency}",
             color = MaterialTheme.colorScheme.onBackground,
             style = MaterialTheme.typography.headlineLarge,
             textAlign = TextAlign.Center

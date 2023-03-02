@@ -11,18 +11,17 @@ import androidx.navigation.compose.rememberNavController
 inline fun <reified T : BaseCoordinator<*>> coordinator(
     key: String? = null,
     crossinline creator: () -> T
-): T =
-    viewModel(
-        modelClass = T::class.java,
-        key = key,
-        factory = object : ViewModelProvider.Factory {
-            override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                return creator() as T
-            }
+): T = viewModel(
+    modelClass = T::class.java,
+    key = key,
+    factory = object : ViewModelProvider.Factory {
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
+            return creator() as T
         }
-    ).apply {
-        navController = rememberNavController()
     }
+).apply {
+    navController = rememberNavController()
+}
 
 @Suppress("UNCHECKED_CAST")
 @Composable
